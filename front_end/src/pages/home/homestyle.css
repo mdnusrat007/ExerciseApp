@@ -1,0 +1,13 @@
+.home-container {
+  padding: 24px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(67,198,172,0.12);
+}
+
+@media (max-width: 600px) {
+  .home-container {
+    padding: 10px;
+    border-radius: 8px;
+  }
+}

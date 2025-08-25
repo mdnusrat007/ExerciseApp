@@ -1,0 +1,32 @@
+.record {
+  background: linear-gradient(90deg, #43c6ac 0%, #191654 100%);
+  color: #fff;
+  margin: 16px 0;
+  padding: 18px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(25,22,84,0.15);
+  transition: transform 0.2s;
+}
+
+.record:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 32px rgba(67,198,172,0.25);
+}
+
+.record h1 {
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+}
+
+.record p {
+  margin: 4px 0;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .record {
+    padding: 12px 10px;
+    font-size: 0.95rem;
+  }
+}
