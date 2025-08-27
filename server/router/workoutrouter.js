@@ -1,10 +1,13 @@
 const express=require("express")
+const authuser=require("../middleware/usermiddleware")
 
 const workout=require("../models/schema");
 
 const router=express.Router()
 
 const {getAllWorkouts,getWorkoutById,createWorkout,updateWorkout,deleteWorkout}=require("../controller/workoutcontroller")
+
+router.use(authuser);
 
 //  get all workouts
 router.get("/",getAllWorkouts);

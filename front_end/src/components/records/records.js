@@ -1,16 +1,21 @@
 import React from 'react'
 import { useEffect, useContext } from 'react';
+import { useAuthcontext } from '../../hooks/useauthcontext';
 import { Data } from '../../context/workoutcontext';
+import '../../components/records/recordstyle.css'
 
-const Records=()=> {
-    const { workouts, getworkouts, handleDelete,toggleupdate } = useContext(Data);
+const Records = () => {
+    const { user } = useAuthcontext();
+    const { workouts, getworkouts, handleDelete, toggleupdate } = useContext(Data);
 
     useEffect(() => {
+        if (user) {
         getworkouts();
-    }, [getworkouts]);
+        }
+    }, [user, getworkouts]);
     return (
 
-        <div>
+        <div className='records-container'>
             {workouts && workouts.map((workout) => { //renders only when data is available
                 return (
                     <div className='record' key={workout._id}>

@@ -1,9 +1,11 @@
 const workout = require("../models/schema");
 
+
 //for all workouts
 const getAllWorkouts = async (req, res) => {
+    const user_id=req.user._id;
     try {
-        const workouts = await workout.find().sort({ createdAt: -1 });
+        const workouts = await workout.find({user_id}).sort({ createdAt: -1 });
         res.json(workouts);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -23,8 +25,10 @@ const getWorkoutById = async (req, res) => {
 
 // creating a post
 const createWorkout = async (req, res) => {
+    const {title,reps,load}=req.body;
+    const user_id=req.user._id;
     try {
-        const newworkout = new workout(req.body);
+        const newworkout = new workout({title,reps,load,user_id});
         const savedWorkout = await newworkout.save();
         res.status(201).send(savedWorkout);
     } catch (error) {

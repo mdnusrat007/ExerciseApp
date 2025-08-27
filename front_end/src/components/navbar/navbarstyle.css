@@ -1,34 +1,92 @@
-.navbar {
-  background: linear-gradient(90deg, #43c6ac 0%, #191654 100%);
-  padding: 16px 32px;
+/* Navbar Styles */
+navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  border-radius: 0 0 16px 16px;
-  box-shadow: 0 2px 8px rgba(25,22,84,0.12);
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.navbar a {
-  color: #fff;
-  text-decoration: none;
+.logout{
+  margin-right: 2rem;
+  gap: 20px;
+}
+
+
+navbar h1 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #fff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.menu p {
+  color: white;
+  margin: 0;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  cursor: pointer;
   font-weight: 600;
-  margin: 0 12px;
-  font-size: 1.1rem;
-  transition: color 0.2s;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  backdrop-filter: blur(10px);
 }
 
-.navbar a:hover {
-  color: #ffaf7b;
+.logout p button{
+  color: #3d1069;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+}
+.menu p:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .navbar {
+.menu p:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  navbar {
+    padding: 1rem;
     flex-direction: column;
-    padding: 10px 8px;
+    gap: 1rem;
   }
-  .navbar a {
-    margin: 6px 0;
-    font-size: 1rem;
+  
+  navbar h1 {
+    font-size: 1.5rem;
+  }
+  
+  .menu {
+    gap: 1rem;
+  }
+  
+  .menu p {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
 }

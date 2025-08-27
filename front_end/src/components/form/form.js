@@ -1,9 +1,13 @@
 import React from 'react'
 import { useContext } from 'react';
 import { Data } from '../../context/workoutcontext';
+import { useAuthcontext } from '../../hooks/useauthcontext';
 import axios from 'axios';
+import '../../components/form/formstyle.css'
 
 const Form = () => {
+
+  const { user } = useAuthcontext();
   const { form, setform, getworkouts, workouts, setWorkouts, updateform, setupdateform } = useContext(Data);
 
   //post request
@@ -14,7 +18,11 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:4000/api/workouts/", form);
+    const response = await axios.post("http://localhost:4000/api/workouts/", form, {
+      headers: {
+        "Authorization": `Bearer ${user.token}`
+      }
+    });
     setWorkouts([...workouts, response.data]);
     setform({ title: "", reps: "", load: "" });
   };
@@ -24,8 +32,13 @@ const Form = () => {
   const updateworkout = async (e) => {
     e.preventDefault();
     const { _id, title, reps, load } = updateform;
-    await axios.patch(`http://localhost:4000/api/workouts/${_id}`, { title, reps, load, })
-    getworkouts();
+    await axios.patch(`http://localhost:4000/api/workouts/${_id}`, { title, reps, load, }, {
+      headers: {
+        "Authorization": `Bearer ${user.token}`
+      }
+    })
+    setupdateform({ title: "", reps: "", load: "" });
+    getworkouts();   
   }
 
   const handleupdateformfield = (e) => {

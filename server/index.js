@@ -1,4 +1,6 @@
-const express=require("express")
+require("dotenv").config();
+
+const express=require("express")    
 //cors (cross origin resoure sharing)
 const cors=require("cors")
 
@@ -15,6 +17,7 @@ const port=process.env.PORT || 4000
 require("./db/connection");
 
 const workoutrouter=require("./router/workoutrouter")
+const userrouter=require("./router/userrouter")
 
 
 //middleware
@@ -23,8 +26,7 @@ app.use(cors());
 
 //router connection
 app.use("/api/workouts", workoutrouter);
-
- 
+app.use("/api/users", userrouter);
 
 app.get("/",(req,res)=>{
     res.send("Hello World")

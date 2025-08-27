@@ -1,25 +1,119 @@
- /* General styles */
-body {
+/* Main Layout Styles */
+* {
   margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(120deg, #f8ffae 0%, #43c6ac 100%);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   min-height: 100vh;
+  line-height: 1.6;
+  color: #2d3748;
 }
 
-/* Container */
 .App {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(67,198,172,0.2);
+  min-height: 100vh;
+  position: relative;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .App {
-    margin: 10px;
-    padding: 10px;
+
+/* Main content layout */
+.main-content {
+  display: flex;
+  min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+  position: relative;
+}
+
+/* Left side for records */
+.records-section {
+  flex: 1;
+  padding: 2rem;
+  padding-right: 420px; /* Space for fixed form */
+  overflow-y: auto;
+}
+
+/* Right side for form (fixed position) */
+.form-section {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 380px;
+  z-index: 10;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5a67d8, #6b46c1);
+}
+
+/* Responsive layout */
+@media (max-width: 1200px) {
+  .records-section {
+    padding-right: 2rem;
   }
+  
+  .form-section {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+  }
+  
+  .main-content {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .records-section {
+    padding: 1rem;
+  }
+  
+  .form-section {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading {
+  animation: pulse 2s infinite;
+}
+
+/* Background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
 }
