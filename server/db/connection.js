@@ -1,6 +1,7 @@
 const mongoose=require("mongoose")
 
-const uri="mongodb+srv://mdnusrat007:najat0007@nusrathcluster.wqmpfwx.mongodb.net/gymdata?retryWrites=true&w=majority";
+const uri = process.env.MONGO_URI;
+
 mongoose.connect(uri)
 .then(()=>{
     console.log("Database connected successfully")
