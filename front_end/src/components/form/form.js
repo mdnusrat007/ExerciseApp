@@ -5,6 +5,8 @@ import { useAuthcontext } from '../../hooks/useauthcontext';
 import axios from 'axios';
 import '../../components/form/formstyle.css'
 
+const API_BASE = process.env.REACT_APP_API_URL;
+
 const Form = () => {
 
   const { user } = useAuthcontext();
@@ -18,7 +20,7 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:4000/api/workouts/", form, {
+    const response = await axios.post(`${API_BASE}/api/workouts/`, form, {
       headers: {
         "Authorization": `Bearer ${user.token}`
       }
@@ -32,7 +34,7 @@ const Form = () => {
   const updateworkout = async (e) => {
     e.preventDefault();
     const { _id, title, reps, load } = updateform;
-    await axios.patch(`http://localhost:4000/api/workouts/${_id}`, { title, reps, load, }, {
+    await axios.patch(`${API_BASE}/api/workouts/${_id}`, { title, reps, load, }, {
       headers: {
         "Authorization": `Bearer ${user.token}`
       }

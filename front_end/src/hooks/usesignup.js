@@ -1,6 +1,8 @@
 import { useAuthcontext } from "./useauthcontext";
 import { useState } from "react";
 
+const API_BASE = process.env.REACT_APP_API_URL;
+
 export const useSignup=()=>{
     const [error, setError] = useState(null);
     const {dispatch}=useAuthcontext();
@@ -8,7 +10,7 @@ export const useSignup=()=>{
     const Signup=async(email,password)=>{
         setError(null)
 
-        const response=await fetch("http://localhost:4000/api/users/sign_in",{
+        const response=await fetch(`${API_BASE}/api/users/sign_in`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
