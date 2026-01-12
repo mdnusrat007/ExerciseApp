@@ -1,0 +1,70 @@
+version: '3.8'
+services:
+  front_end:
+    depends_on:
+      - server
+    build: ./front_end
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL: http://localhost:4000
+    container_name: exercise_frontend
+
+    develop:
+      watch:
+        - path: ./front_end/package.json
+        - action: rebuild
+        - path: ./front_end/package-lock.json
+        - action: rebuild
+        - path: ./front_end
+        - target: /app
+        - action: restart
+    networks:
+      - exercise-network
+    restart: unless-stop
+  server:
+    depends_on:
+      - mongodb
+    build: ./server
+    ports:
+      - "4000:4000"
+    environment:
+      - MONGO_URI: mongodb+srv://mdnusrat007:KaRCAUcu7OQE5NPj@nusrathcluster.wqmpfwx.mongodb.net/fulldatadb
+      - PORT: 4000
+      - JWT_SECRET: MY_SECRET_KEY
+    container_name: exercise_server
+    develop:
+      watch:
+        - path: ./server/package.json
+        - action: rebuild
+        - path: ./server/package_lock.json
+        - action: rebuild
+        - path: ./server
+        - target: /app
+        - action: restart
+    networks:
+      - exercise-network
+    restart: unless-stop
+  mongodb:
+    image: mongo:latest
+    container_name: exercise_mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mdnusrat007
+      - MONGO_INITDB_ROOT_PASSWORD=KaRCAUcu7OQE5NPj
+    volumes:
+      - gym_data:/data/db
+    networks:
+      - exercise-network
+    restart: unless-stop
+
+volumes:
+  gym_data:
+    driver: local
+
+networks:
+  exercise-network:
+    driver: bridge
+
+    

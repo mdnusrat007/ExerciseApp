@@ -3,6 +3,7 @@ import { createContext, useState } from 'react'
 import axios from 'axios';
 import { useAuthcontext } from "../hooks/useauthcontext"
 
+const API_BASE = process.env.REACT_APP_API_URL;
 
 export const Data = createContext();
 
@@ -18,7 +19,7 @@ const Workoutcontext = ({ children }) => {
     });
     const getworkouts = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/api/workouts/", {
+            const response = await axios.get(`${API_BASE}/api/workouts/`, {
                 headers: {
                     "Authorization": `Bearer ${user.token}`
                 }
@@ -32,7 +33,7 @@ const Workoutcontext = ({ children }) => {
 
     // //delete function
     const handleDelete = async (_id) => {
-        await axios.delete(`http://localhost:4000/api/workouts/${_id}`, {
+        await axios.delete(`${API_BASE}/api/workouts/${_id}`, {
             headers: {
                 "Authorization": `Bearer ${user.token}`
             }
