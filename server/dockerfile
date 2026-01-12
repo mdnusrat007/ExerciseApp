@@ -1,7 +1,21 @@
-FROM node:24-alpine
+FROM node:24-alpine 
+# base image for container
+
 WORKDIR /app
+#set working directory 
+
 COPY package*.json ./
+#copy package files
+
 RUN npm install
+#install dependencies
+
 COPY . .
+#copy source code files
+
 EXPOSE 4000
-CMD ["npm","run","dev"]
+#doc port as 4000
+
+CMD ["npm", "run", "dev"]
+#for running the application
+
