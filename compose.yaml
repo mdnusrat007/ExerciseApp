@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - REACT_APP_API_URL: http://localhost:4000
+      - REACT_APP_API_URL: ${{REACT_APP_API_URL}}
     container_name: exercise_frontend
 
     develop:
@@ -29,9 +29,9 @@ services:
     ports:
       - "4000:4000"
     environment:
-      - MONGO_URI: mongodb+srv://mdnusrat007:KaRCAUcu7OQE5NPj@nusrathcluster.wqmpfwx.mongodb.net/fulldatadb
+      - MONGO_URI: ${{MONGO_URI}}
       - PORT: 4000
-      - JWT_SECRET: MY_SECRET_KEY
+      - JWT_SECRET: ${{JWT_SECRET}}
     container_name: exercise_server
     develop:
       watch:
@@ -51,8 +51,8 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=mdnusrat007
-      - MONGO_INITDB_ROOT_PASSWORD=KaRCAUcu7OQE5NPj
+      - MONGO_INITDB_ROOT_USERNAME=${{MONGO_INITDB_ROOT_USERNAME}}
+      - MONGO_INITDB_ROOT_PASSWORD=${{MONGO_INITDB_ROOT_PASSWORD}}
     volumes:
       - gym_data:/data/db
     networks:
