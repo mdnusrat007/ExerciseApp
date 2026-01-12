@@ -13,12 +13,12 @@ services:
     develop:
       watch:
         - path: ./front_end/package.json
-        - action: rebuild
+          action: rebuild
         - path: ./front_end/package-lock.json
-        - action: rebuild
+          action: rebuild
         - path: ./front_end
-        - target: /app
-        - action: restart
+          target: /app
+          action: sync
     networks:
       - exercise-network
     restart: unless-stop
@@ -36,12 +36,12 @@ services:
     develop:
       watch:
         - path: ./server/package.json
-        - action: rebuild
-        - path: ./server/package_lock.json
-        - action: rebuild
+          action: rebuild
+        - path: ./server/package-lock.json
+          action: rebuild
         - path: ./server
-        - target: /app
-        - action: restart
+          target: /app
+          action: sync
     networks:
       - exercise-network
     restart: unless-stop
