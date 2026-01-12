@@ -21,7 +21,6 @@ services:
           action: sync
     networks:
       - exercise-network
-    restart: unless-stop
   server:
     depends_on:
       - mongodb
@@ -44,7 +43,6 @@ services:
           action: sync
     networks:
       - exercise-network
-    restart: unless-stop
   mongodb:
     image: mongo:latest
     container_name: exercise_mongodb
@@ -57,7 +55,6 @@ services:
       - gym_data:/data/db
     networks:
       - exercise-network
-    restart: unless-stop
 
 volumes:
   gym_data:
